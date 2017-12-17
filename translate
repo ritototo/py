@@ -1,0 +1,24 @@
+import urllib.request
+import urllib.parse
+import json
+import time
+from random import randint
+while True:
+    word = input("请输入需要翻译的语句(输入q!退出程序)>>>>>>")
+    if word == "q!":
+        break
+    url = "http://fy.iciba.com/ajax.php?a=fy"
+    head = {}
+    head["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
+    data = {}
+    data["f"]="auto"
+    data["t"]="auto"
+    data["w"]=word
+    data = urllib.parse.urlencode(data).encode("utf-8")
+    req = urllib.request.Request(url,data,head)
+    html = urllib.request.urlopen(req)
+    page = html.read().decode("utf-8")
+    tran = json.loads(page)
+    tran = tran["content"]["word_mean"]
+    print(tran)
+    time.sleep(randint(0,10))
