@@ -3,6 +3,7 @@ import urllib.parse
 import json
 import time
 from random import randint
+
 while True:
     word = input("请输入需要翻译的语句(输入q!退出程序)>>>>>>")
     if word == "q!":
